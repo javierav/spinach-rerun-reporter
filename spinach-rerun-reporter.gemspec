@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   ## INFORMATION
   #
   s.name = 'spinach-rerun-reporter'
-  s.version = '0.0.1'
+  s.version = '0.0.2'
   s.summary = 'spinach rerun reporter'
   s.description = nil
   s.author = %w(Javier Aranda)
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = %w(lib)
   s.files = s.files = Dir.glob('lib/**/*') + %w(LICENSE README.md)
   s.extra_rdoc_files = %w(README.md LICENSE)
-  s.required_ruby_version = '~> 2.2.0'
+  s.required_ruby_version = '~> 2.0'
 
   #
   ## DEPENDENCIES

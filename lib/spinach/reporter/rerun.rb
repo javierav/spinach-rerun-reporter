@@ -5,7 +5,7 @@ module Spinach
         super(*args)
 
         # reset rerun.txt file
-        File.delete('tmp/spinach-rerun.txt') if File.file?('tmp/spinach-rerun.txt')
+        File.delete(rerun_file) if File.file?(rerun_file)
 
         # create tmp folder if not exists
         Dir.mkdir('tmp', 0755) unless Dir.exist?('tmp')
@@ -18,7 +18,7 @@ module Spinach
         super success
 
         # save rerun scenarios in a file
-        File.open('tmp/spinach-rerun.txt', 'w') { |f| f.write @rerun.join("\n") } unless success
+        File.open(rerun_file, 'w') { |f| f.write @rerun.join("\n") } unless success
       end
 
       def on_failed_step(step, failure, step_location, step_definitions = nil)
@@ -33,6 +33,12 @@ module Spinach
 
         # save feature file and scenario line
         @rerun << "#{current_feature.filename}:#{current_scenario.line}"
+      end
+
+      private
+
+      def rerun_file
+        ENV['SPINACH_RERUN_FILE'] || 'tmp/spinach-rerun.txt'
       end
     end
   end

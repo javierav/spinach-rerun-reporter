@@ -1,6 +1,15 @@
 # spinach-rerun-reporter
 
-A reporter for [Spinach](https://github.com/codegram/spinach) that writes in a file all failed scenarios in order to re-execute them.
+A reporter for [Spinach](https://github.com/codegram/spinach) that writes in a
+file all failed scenarios in order to re-execute them.
+
+
+## Status
+
+[![Gem Version](https://badge.fury.io/rb/spinach-rerun-reporter.svg)](https://badge.fury.io/rb/spinach-rerun-reporter)
+[![Dependencies](https://gemnasium.com/badges/github.com/javierav/spinach-rerun-reporter.svg)](https://gemnasium.com/github.com/javierav/spinach-rerun-reporter)
+
+> *Note*: You're reading the documentation for the next release, which should be 0.1.0
 
 
 ## Installation
@@ -8,7 +17,9 @@ A reporter for [Spinach](https://github.com/codegram/spinach) that writes in a f
 Add this line to your application's `Gemfile`:
 
 ```
-gem 'spinach-rerun-reporter', '~> 0.0.2'
+group :development, :test do
+  gem 'spinach-rerun-reporter'
+end
 ```
 
 And then execute:
@@ -17,56 +28,38 @@ And then execute:
 $ bundle install
 ```
 
-
 ## Usage
 
 ```
 $ bundle exec spinach -r rerun
 ```
 
-When a scenario fails, the reporter writes the feature file and line in `tmp/spinach-rerun.txt` file.
-
-### Example
-
-```
-features/login.feature:21
-features/login.feature:38
-features/home.feature:10
-```
+When a scenario fails, the reporter writes the feature file and line in the file
+specified in `SPINACH_RERUN_FILE` environment variable which defaults to
+`tmp/spinach-rerun.txt` if not exists.
 
 ### How to rerun
 
-In order to rerun the failing scenarios I use the following Bash script:
+In order to rerun the failing scenarios you can use [this](examples/rerun.sh)
+script.
 
-```bash
-#!/usr/bin/env bash
+### Rails
 
-RERUN_FILE="tmp/spinach-rerun.txt"
-TAGS="~@todo,~@firefox"
+If Rails is present, this gem adds a Rake task to your project that automatize
+the rerun process.
 
-set +e
-
-bundle exec spinach --tags $TAGS -r rerun; exitCode=$?
-
-counter=1
-
-while [ true ]; do
-  if [ $exitCode = 0 ]; then
-    exit 0
-  else
-    if [ $counter -gt 3 ]; then
-      exit 1
-    else
-      counter=$((counter + 1))
-      bundle exec spinach `cat $RERUN_FILE | tr "\\n" " "` --tags $TAGS -r rerun; exitCode=$?
-    fi
-  fi
-done
-
-exit $exitCode
+```
+$ rake spinach:rerun
 ```
 
-The script executes all features. If any scenarios fails, exits with a zero status code. In other case it uses the rerun file to execute only the failing scenarios. After three attemps exits with a non zero status code.
+You can use the following environment variables to configure it:
+
+| Variable | Description | Default |
+| --- | --- | --- |
+| SPINACH_RERUN_TAGS | Specify tags for Spinach | nil |
+| SPINACH_RERUN_FILE | Specify the rerun file | tmp/spinach-rerun.txt |
+| SPINACH_RERUN_RETRY_COUNT | Specify the number of retry attemps | 3 |
+| SPINACH_RERUN_PREPEND_CMD | Specify a prefix for run Spinach command | nil |
 
 
 ## Contributing

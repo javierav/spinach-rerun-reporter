@@ -71,7 +71,7 @@ The script executes all features. If any scenarios fails, exits with a zero stat
 
 ## Contributing
 
-1. Fork it ( https://github.com/arandaio/spinach-rerun-reporter/fork )
+1. Fork it ( https://github.com/javierav/spinach-rerun-reporter/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
@@ -85,4 +85,4 @@ The script executes all features. If any scenarios fails, exits with a zero stat
 
 ## License
 
-Copyright (c) 2015 Javier Aranda - Released under [MIT](LICENSE) license
+Copyright (c) 2016 Javier Aranda - Released under [MIT](LICENSE) license

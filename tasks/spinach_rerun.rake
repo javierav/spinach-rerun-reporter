@@ -36,7 +36,7 @@ end
 
 # rubocop:disable Metrics/AbcSize
 def run_spinach_tests
-  success = run_spinach(%W(--tags #{tags}))
+  success = run_spinach(tags ? %W(--tags #{tags}) : [nil])
 
   retry_count.times do
     break if success

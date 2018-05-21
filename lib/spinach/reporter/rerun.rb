@@ -25,14 +25,14 @@ module Spinach
         super step, failure, step_location, step_definitions
 
         # save feature file and scenario line
-        @rerun << "#{current_feature.filename}:#{current_scenario.line}"
+        @rerun << "#{current_feature.filename}:#{current_scenario.lines[0]}"
       end
 
       def on_error_step(step, failure, step_location, step_definitions = nil)
         super step, failure, step_location, step_definitions
 
         # save feature file and scenario line
-        @rerun << "#{current_feature.filename}:#{current_scenario.line}"
+        @rerun << "#{current_feature.filename}:#{current_scenario.lines[0]}"
       end
 
       private

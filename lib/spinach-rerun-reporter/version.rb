@@ -1,7 +1,7 @@
 module SpinachRerunReporter
   module VERSION
-    MAJOR = 0
-    MINOR = 1
+    MAJOR = 1
+    MINOR = 0
     TINY  = 0
     PRE   = nil
 

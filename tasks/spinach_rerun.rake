@@ -26,17 +26,16 @@ def prepend_cmd
 end
 
 def run_command(cmd)
-  env = { 'RAILS_ENV' => 'test', 'SPINACH_RERUN_FILE' => rerun_file }
+  env = {'RAILS_ENV' => 'test', 'SPINACH_RERUN_FILE' => rerun_file}
   system(env, *cmd.compact)
 end
 
 def run_spinach(args)
-  run_command([prepend_cmd] + %w(spinach -r rerun) + args)
+  run_command([prepend_cmd] + %w[spinach -r rerun] + args)
 end
 
-# rubocop:disable Metrics/AbcSize
 def run_spinach_tests
-  success = run_spinach(tags ? %W(--tags #{tags}) : [nil])
+  success = run_spinach(tags ? %W[--tags #{tags}] : [nil])
 
   retry_count.times do
     break if success

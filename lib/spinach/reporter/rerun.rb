@@ -8,7 +8,7 @@ module Spinach
         File.delete(rerun_file) if File.file?(rerun_file)
 
         # create tmp folder if not exists
-        Dir.mkdir('tmp', 0755) unless Dir.exist?('tmp')
+        Dir.mkdir('tmp', 0o755) unless Dir.exist?('tmp')
 
         # rerun list of failing scenarios
         @rerun = []
@@ -21,14 +21,14 @@ module Spinach
         File.open(rerun_file, 'w') { |f| f.write @rerun.join("\n") } unless success
       end
 
-      def on_failed_step(step, failure, step_location, step_definitions = nil)
+      def on_failed_step(step, failure, step_location, step_definitions=nil)
         super step, failure, step_location, step_definitions
 
         # save feature file and scenario line
         @rerun << "#{current_feature.filename}:#{current_scenario.lines[0]}"
       end
 
-      def on_error_step(step, failure, step_location, step_definitions = nil)
+      def on_error_step(step, failure, step_location, step_definitions=nil)
         super step, failure, step_location, step_definitions
 
         # save feature file and scenario line

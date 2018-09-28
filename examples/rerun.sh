@@ -13,7 +13,7 @@ bundle exec spinach --tags $SPINACH_RERUN_TAGS -r rerun; exitCode=$?
 
 counter=1
 
-while [ true ]; do
+while true; do
   if [ $exitCode = 0 ]; then
     exit 0
   else
@@ -21,7 +21,7 @@ while [ true ]; do
       exit 1
     else
       counter=$((counter + 1))
-      bundle exec spinach "`cat $SPINACH_RERUN_FILE | tr "\\n" " "` --tags $SPINACH_RERUN_TAGS -r rerun; exitCode=$?"
+      bundle exec spinach "$(cat $SPINACH_RERUN_FILE | tr "\\n" " ") --tags $SPINACH_RERUN_TAGS -r rerun; exitCode=$?"
     fi
   fi
 done

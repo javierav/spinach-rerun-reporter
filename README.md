@@ -78,4 +78,4 @@ You can use the following environment variables to configure it:
 
 ## License
 
-Copyright (c) 2016 Javier Aranda - Released under [MIT](LICENSE) license
+Copyright (c) 2018 Javier Aranda - Released under [MIT](LICENSE) license

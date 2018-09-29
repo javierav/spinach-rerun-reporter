@@ -6,10 +6,8 @@ file all failed scenarios in order to re-execute them.
 
 ## Status
 
-[![Gem Version](https://badge.fury.io/rb/spinach-rerun-reporter.svg)](https://badge.fury.io/rb/spinach-rerun-reporter)
-[![Dependencies](https://gemnasium.com/badges/github.com/javierav/spinach-rerun-reporter.svg)](https://gemnasium.com/github.com/javierav/spinach-rerun-reporter)
-
-> *Note*: You're reading the documentation for the next release, which should be 0.1.0
+![Gem](https://img.shields.io/gem/v/spinach-rerun-reporter.svg)
+![Depfu](https://badges.depfu.com/badges/5dfc158e963346012b4c0fe02786c993/count.svg)
 
 
 ## Installation

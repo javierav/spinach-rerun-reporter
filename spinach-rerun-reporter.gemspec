@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   ## GEM
   #
   s.require_paths = %w[lib]
-  s.files = `git ls-files -z -- lib/* LICENSE README.md spinach-rerun-reporter.gemspec`.split("\x0")
+  s.files = `git ls-files -z -- lib/* tasks/* LICENSE README.md spinach-rerun-reporter.gemspec`.split("\x0")
   s.extra_rdoc_files = %w[README.md LICENSE]
   s.required_ruby_version = '> 2.0'
 
